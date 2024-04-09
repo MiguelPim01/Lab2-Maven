@@ -7,6 +7,7 @@ import org.apache.hc.client5.http.impl.classic.HttpClients;
 import org.apache.hc.core5.http.HttpEntity;
 import org.apache.hc.core5.http.io.entity.EntityUtils;
 
+import com.github.lalyos.jfiglet.FigletFont;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
@@ -25,7 +26,8 @@ public class App
         HttpEntity entity1 = response1.getEntity();
         JsonObject json = JsonParser.parseString(EntityUtils.toString(entity1)).getAsJsonObject();
         Double temperature = json.getAsJsonObject("current_weather").get("temperature").getAsDouble();
-        System.out.println(temperature);
+        String asciiArt1 = FigletFont.convertOneLine(temperature.toString() + "°C");
+        System.out.println(asciiArt1);
     
         response1.close();
         
